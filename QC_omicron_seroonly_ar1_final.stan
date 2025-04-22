@@ -55,7 +55,7 @@ transformed parameters{
 }
 model {
   //priors
-  beta[1] ~ normal(mu_beta, sigma_beta^2 / (1 - phi_beta^2));
+  beta[1] ~ normal(mu_beta, sqrt(sigma_beta^2 / (1 - phi_beta^2)));
   beta[2:n_days] ~ normal(phi0_beta + phi_beta * beta[1:(n_days-1)], sigma_beta);
   sigma_beta ~ cauchy(0, 1);
   phi_beta ~ uniform(0,1);
